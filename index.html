@@ -356,7 +356,7 @@
   <!-- Nav -->
   <header class="nav">
     <div class="nav-inner">
-      <div class="brand mono"><span class="accent">artur</span>@wieczorek<span class="path">:~$</span></div>
+      <a class="brand mono" href="#top" aria-label="back to top"><span class="accent">artur</span>@wieczorek<span class="path">:~$</span></a>
       <div class="nav-right">
         <nav class="nav-links">
           <a href="#about">./about</a>
@@ -824,6 +824,12 @@
   <script>
     // active-link highlight + current year
     document.getElementById('yr').textContent = new Date().getFullYear();
+    // brand click -> smooth scroll to the very top
+    const brand = document.querySelector('a.brand');
+    if (brand) brand.addEventListener('click', function (e) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
     const links = [...document.querySelectorAll('.nav-links a')];
     const map = links.reduce((m, a) => (m[a.getAttribute('href').slice(1)] = a, m), {});
     const obs = new IntersectionObserver((es) => {
